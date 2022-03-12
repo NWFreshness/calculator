@@ -12,7 +12,8 @@
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-left: 20px;
     font-size: 40px;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
@@ -49,8 +50,4 @@
 
 .numbers > *:hover, .functions > *:hover{
     background-color: aqua;
-}
-
-.functions {
-    
 }
