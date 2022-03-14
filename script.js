@@ -24,6 +24,15 @@ const display = document.querySelector('.display');
 const numbers = document.querySelector('.numbers').children;
 const functions = document.querySelector('.functions').children;
 
+function clearDisplay(){
+    numbersArray = [];
+    operator = '';
+    display.textContent = '0'
+}
+
+function updateDisplayEquals(){
+    display.textContent = operate(operator, +numbersArray[0], +numbersArray[1]);
+}
 
 Array.from(numbers).forEach(e=>{
     e.addEventListener('click',  ()=>{
@@ -31,9 +40,7 @@ Array.from(numbers).forEach(e=>{
             numbersArray.push(e.innerText);
             display.textContent = e.innerText;
         }else{
-            numbersArray = [];
-            operator = '';
-            display.textContent = '0'
+            clearDisplay();
         }
     });
 })
@@ -41,12 +48,12 @@ Array.from(numbers).forEach(e=>{
 Array.from(functions).forEach(e=>{
     e.addEventListener('click', ()=>{
         if(e.innerText === '='){
-            display.textContent = operate(operator, +numbersArray[0], +numbersArray[1]);
+            updateDisplayEquals();
         }
         if(numbersArray[0] != undefined && numbersArray[1] != undefined){
             if(e.innerText === '+' || e.innerText === '-' || e.innerText === '*' || e.innerText === '/'){
                 
-                display.textContent = operate(operator, +numbersArray[0], +numbersArray[1])
+                updateDisplayEquals();
                 numbersArray[0] = operate(operator, +numbersArray[0], +numbersArray[1]);
                 operator = e.innerText;
                 numbersArray.pop();
